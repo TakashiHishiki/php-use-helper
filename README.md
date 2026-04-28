@@ -1,88 +1,94 @@
 # PHP Use Helper
 
-**PHP Use Helper** makes it effortless to manage `use` statements in your PHP files.  
-No more typing long namespaces by hand — just pick from the list and it's done.
+PHPファイルの `use` 文を簡単に追加・整理・削除できる Visual Studio Code 拡張機能です。
 
-Built with **Symfony** and **Doctrine** developers in mind.
+長い名前空間を手動で入力する手間をなくし、リストから選ぶだけで完了します。
+**Symfony** や **Doctrine** を使う開発者に最適化されています。
 
----
-
-## Features
-
-### Add a `use` statement — `Cmd+Shift+U` / `Ctrl+Shift+U`
-
-Place your cursor on a class name and press the shortcut, or right-click and choose **PHP: Add use statement** from the context menu.  
-A quick-pick list appears, automatically filtered by the word under your cursor.  
-Select a class and the `use` statement is inserted at the correct position in your file.
-
-### Sort `use` statements — `Cmd+Shift+S` / `Ctrl+Shift+S`
-
-Sorts all `use` statements in the file alphabetically in one step.  
-Also available via right-click → **PHP: Sort use statements**.
-
-### Remove unused `use` statements — right-click menu
-
-Right-click anywhere in the editor → **PHP: Remove unused use statements**.  
-The extension detects which classes are not referenced in the file and removes them after confirmation.
-
-### Hover to see the full class name
-
-Hover over any class name in your file to see its fully qualified namespace in a tooltip.
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/colscenery.php-use-helper?label=VS%20Code%20Marketplace&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=colscenery.php-use-helper)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
-## Keyboard Shortcuts
+## 機能
 
-| Action | Mac | Windows / Linux |
-|---|---|---|
-| Add use statement | `Cmd+Shift+U` | `Ctrl+Shift+U` |
-| Sort use statements | `Cmd+Shift+S` | `Ctrl+Shift+S` |
+### `use` 文を追加する — `Cmd+Shift+U` / `Ctrl+Shift+U`
+
+クラス名にカーソルを合わせてショートカットを押すか、右クリックから **PHP: Add use statement** を選択します。
+カーソル下の単語で自動フィルタリングされたクイックピックリストが表示されます。
+クラスを選択すると、`use` 文がファイルの正しい位置に挿入されます。
+
+### `use` 文をソートする — `Cmd+Shift+S` / `Ctrl+Shift+S`
+
+ファイル内のすべての `use` 文をアルファベット順に一括ソートします。
+右クリック → **PHP: Sort use statements** からも実行できます。
+
+### 未使用の `use` 文を削除する — 右クリックメニュー
+
+エディタ内で右クリック → **PHP: Remove unused use statements** を選択します。
+ファイル内で参照されていないクラスを検出し、確認後に削除します。
+
+### ホバーで完全クラス名を確認
+
+ファイル内のクラス名にホバーすると、完全修飾の名前空間をツールチップで表示します。
 
 ---
 
-## Right-click Context Menu
+## キーボードショートカット
 
-All three commands are available from the editor context menu when editing a PHP file:
+| 操作 | Mac | Windows / Linux |
+|------|-----|-----------------|
+| `use` 文を追加 | `Cmd+Shift+U` | `Ctrl+Shift+U` |
+| `use` 文をソート | `Cmd+Shift+S` | `Ctrl+Shift+S` |
+
+---
+
+## 右クリックコンテキストメニュー
+
+PHPファイルの編集中にエディタ内で右クリックすると、以下の3つのコマンドにアクセスできます。
 
 - **PHP: Add use statement**
 - **PHP: Sort use statements**
 - **PHP: Remove unused use statements**
 
-Right-click anywhere inside a `.php` file to access these commands instantly, without needing to remember any keyboard shortcuts.
+ショートカットを覚えなくても、すぐに使えます。
 
 ---
 
-## Supported Classes
+## 対応クラス一覧
 
-The extension includes presets for the most commonly used classes in Symfony and Doctrine projects.
+拡張機能には、SymfonyとDoctrineプロジェクトでよく使われるクラスのプリセットが含まれています。
 
-**Symfony**
-- Controller, Request, Response, JsonResponse, RedirectResponse
-- Route (Attribute & Annotation)
-- AbstractType, FormBuilderInterface, OptionsResolver
-- TextType, EmailType, PasswordType, IntegerType, DateTimeType, SubmitType, ChoiceType, TextareaType
-- ValidatorInterface, NotBlank, Length, Email
-- UserInterface, PasswordAuthenticatedUserInterface, UserPasswordHasherInterface
-- SerializerInterface, EventSubscriberInterface
+### Symfony
 
-**Doctrine ORM**
-- EntityManagerInterface, EntityRepository, ServiceEntityRepository
-- ManagerRegistry, Paginator
-- Mapping: Entity, Column, Id, GeneratedValue, ManyToOne, OneToMany, ManyToMany, JoinColumn, Table
+- `Controller`, `Request`, `Response`, `JsonResponse`, `RedirectResponse`
+- `Route`（属性・アノテーション両対応）
+- `AbstractType`, `FormBuilderInterface`, `OptionsResolver`
+- `TextType`, `EmailType`, `PasswordType`, `IntegerType`, `DateTimeType`, `SubmitType`, `ChoiceType`, `TextareaType`
+- `ValidatorInterface`, `NotBlank`, `Length`, `Email`
+- `UserInterface`, `PasswordAuthenticatedUserInterface`, `UserPasswordHasherInterface`
+- `SerializerInterface`, `EventSubscriberInterface`
 
-**PHP Standard**
-- DateTime, DateTimeImmutable, DateTimeInterface
-- Exception, RuntimeException, InvalidArgumentException, LogicException
+### Doctrine ORM
+
+- `EntityManagerInterface`, `EntityRepository`, `ServiceEntityRepository`
+- `ManagerRegistry`, `Paginator`
+- マッピング: `Entity`, `Column`, `Id`, `GeneratedValue`, `ManyToOne`, `OneToMany`, `ManyToMany`, `JoinColumn`, `Table`
+
+### PHP 標準
+
+- `DateTime`, `DateTimeImmutable`, `DateTimeInterface`
+- `Exception`, `RuntimeException`, `InvalidArgumentException`, `LogicException`
 
 ---
 
-## Adding Your Own Classes
+## 独自クラスの追加
 
-Open `src/extension.js` and add entries to the `COMMON_CLASSES` array:
+`src/extension.js` を開き、`COMMON_CLASSES` 配列にエントリを追加してください。
 
 ```js
 const COMMON_CLASSES = [
-  // Add your own classes here
+  // 独自クラスをここに追加
   'App\\Service\\MyCustomService',
   'App\\Repository\\MyRepository',
   ...
@@ -91,43 +97,45 @@ const COMMON_CLASSES = [
 
 ---
 
-## Installation
+## インストール
 
-### From VS Code Marketplace
+### VS Code マーケットプレイスから
 
-Search for **"PHP Use Helper"** in the Extensions panel, or install via Quick Open:
+[拡張機能マーケットプレイス](https://marketplace.visualstudio.com/items?itemName=colscenery.php-use-helper) からインストールできます。
+
+VS Code で `Ctrl+P`（Mac: `Cmd+P`）を開き、以下を貼り付けて Enter を押してください。
 
 ```
-Ctrl+P → ext install colscenery.php-use-helper
+ext install colscenery.php-use-helper
 ```
 
-### From VSIX file
+### VSIX ファイルから
 
 ```bash
 code --install-extension php-use-helper-1.0.2.vsix
 ```
 
-Or open VSCode → `Cmd+Shift+P` → `Extensions: Install from VSIX...`
+または、VS Code で `Cmd+Shift+P` → `Extensions: Install from VSIX...` を選択してください。
 
 ---
 
-## Requirements
+## 動作要件
 
 - VSCode `^1.85.0`
-- A PHP project (Symfony recommended)
+- PHPプロジェクト（Symfony推奨）
 
 ---
 
-## Changelog
+## 変更履歴
 
 ### 1.0.2
-- Updated extension icon
+- 拡張機能アイコンを更新
 
 ### 1.0.1
-- Initial public release
+- 初回パブリックリリース
 
 ---
 
-## License
+## ライセンス
 
-MIT
+[MIT](LICENSE)
